@@ -15,7 +15,6 @@ class SubscriberController extends Controller
      */
     public function index()
     {
-        echo "Hola";
     }
 
     /**
@@ -39,12 +38,16 @@ class SubscriberController extends Controller
         $rules = array(
             'name' => 'required',
             'email' => 'required|unique:subscribers|email',
+            'notice_of_privacy' => 'required|integer|min:1|max:1'
         );
         $messages = array(
             'name.required' => 'Por favor ingresa un nombre',
             'email.required' => 'Por favor ingresa un correo electrónico.',
+            'notice_of_privacy.required' => 'Se debe aceptar el Aviso de Privacidad.',
             'email.unique' => 'Lo sentimos este correo electrónico ya fue registrado.',
-            'email.email' => 'Formato de correo electrónico incorrecto.'
+            'email.email' => 'Formato de correo electrónico incorrecto.',
+            'notice_of_privacy.min' => 'Se debe aceptar el Aviso de Privacidad.',
+            'notice_of_privacy.max' => 'Se debe aceptar el Aviso de Privacidad.',
         );
 
         $validator = Validator::make($request->all(), $rules, $messages);

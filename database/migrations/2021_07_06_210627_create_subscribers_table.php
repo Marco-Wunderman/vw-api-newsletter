@@ -17,6 +17,7 @@ class CreateSubscribersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->boolean('notice_of_privacy');
             $table->timestamps();
         });
     }
