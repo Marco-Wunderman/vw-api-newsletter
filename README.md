@@ -19,11 +19,11 @@ API desarrollada para registrar a los usuarios que desean estar inscritos al New
 ## Entorno de Desarrollo 🚀
 > Se asume que previamente ya se tiene instalado un ambiente LAMP y que este ya esta funcional, esto con ayuda de algún paquete libre como XAMPP o bien tener instalado cada tecnología de manera individual.
 
- 1. Dentro del la carpeta del proyecto previamente clonado ejecutamos el comando `composer` el cual ayudara a instalar todos los paquetes de PHP que necesita el proyecto.
+ 1. Dentro del la carpeta del proyecto previamente clonado ejecutamos el comando `composer install` el cual ayudara a instalar todos los paquetes de PHP que necesita el proyecto.
  2. Configuramos el archivo *.env* el cual esta en la raíz del proyecto de no encontrarse crear una copia del archivo *.env.example* y reenombrar la copia del archivo con el nombre *.env*, procedemos a ingresar la credenciales de la base de datos   <p> <ul><li>DB_DATABASE = NOMBRE_BD</li><li>DB_USERNAME = USUARIO_BD</li><li>DB_PASSWORD=PASSWORD_BD</li></ul> </p>
- 3. Procedemos a correr las migraciones con el comando `php artisan migrate` el cual creara las tablas en la base de datos con sus respectivos campos.
- 4. Por ultimo corremos el comando `php artisan serve` el cual levantara el servidor de laravel, 
- 5. En nuestro navegador ingresamos a la url: http://127.0.0.1:8000
+ 3. Procedemos a correr el comando `php artisan serve` el cual levantara el servidor de laravel. 
+ 4. Abrimos una nueva terminal para no interrumpir el proceso del servidor y en la nueva terminal corremos las migraciones con el comando `php artisan migrate` el cual creara las tablas en la base de datos con sus respectivos campos.
+ 5. Por ultimo en nuestro navegador ingresamos a la url: http://127.0.0.1:8000
 
 ## API Endpoints 🔵
 Para hacer uso del API se debe de enviar una API KEY la cual se enviara como parametro en cada una de las urls de los endpoints
