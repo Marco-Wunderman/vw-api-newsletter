@@ -27,9 +27,9 @@ API desarrollada para registrar a los usuarios que desean estar inscritos al New
 
 ## API Endpoints 🔵
 Para hacer uso del API se debe de enviar una API KEY la cual se enviara como parametro en cada una de las urls de los endpoints
-Variable                          |Valor                         |
-|----------------|-------------------------------|-----------------------------|
-api_key            |key_cur_prod_fnPqT5xQEi5Vcb9wKwbCf65c3BjVGyBB
+| Variable      | Valor |
+| ----------- | ----------- |
+| api_key      | key_cur_prod_fnPqT5xQEi5Vcb9wKwbCf65c3BjVGyBB       |
 
 #### Endpoints Suscriber
  > Store (insertar registro)
