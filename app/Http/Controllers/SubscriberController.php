@@ -52,9 +52,11 @@ class SubscriberController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
-            return response()->json(["errors" => $validator->errors()], 400);
+
+            return response()->json(["errors" => $validator->errors(), "status" => 400], 400);
         } else {
             $subscriber = Subscriber::create($request->all());
+            $subscriber->status = 200;
             return response()->json($subscriber, 200);
         }
     }
