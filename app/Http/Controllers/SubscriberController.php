@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class SubscriberController extends Controller
 {
@@ -35,6 +36,7 @@ class SubscriberController extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = array(
             'name' => 'required',
             'email' => 'required|unique:subscribers|email',
@@ -52,9 +54,10 @@ class SubscriberController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
-
             return response()->json(["errors" => $validator->errors(), "status" => 400], 400);
         } else {
+            $uniqid = $this->generateIdUnique();
+            $request->request->add(['uniqueid' => $uniqid]);
             $subscriber = Subscriber::create($request->all());
             $subscriber->status = 200;
             return response()->json($subscriber, 200);
@@ -104,5 +107,20 @@ class SubscriberController extends Controller
     public function destroy(Subscriber $subscriber)
     {
         //
+    }
+
+    private function generateIdUnique()
+    {
+        $id = "MX-" . date('shmdy') . substr(uniqid(), 9, 12);
+
+        if ($this->IdUniqueExists($id)) {
+            return $this->generateIdUnique();
+        }
+        return $id;
+    }
+
+    private function IdUniqueExists($uniqueID)
+    {
+        return Subscriber::whereuniqueid($uniqueID)->exists();
     }
 }
