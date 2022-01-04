@@ -37,7 +37,7 @@ class SubscriberController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'name' => 'required',
+            'name' => 'required|regex:/^[\pL\pM\p{Zs}.-]+$/u',
             'email' => 'required|unique:subscribers|email:rfc,dns',
             'notice_of_privacy' => 'required|integer|min:1|max:1'
         );
