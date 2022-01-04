@@ -39,7 +39,7 @@ class SubscriberController extends Controller
 
         $rules = array(
             'name' => 'required',
-            'email' => 'required|unique:subscribers|email',
+            'email' => 'required|unique:subscribers|email:rfc,dns',
             'notice_of_privacy' => 'required|integer|min:1|max:1'
         );
         $messages = array(
