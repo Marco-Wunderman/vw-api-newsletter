@@ -36,7 +36,6 @@ class SubscriberController extends Controller
      */
     public function store(Request $request)
     {
-
         $rules = array(
             'name' => 'required',
             'email' => 'required|unique:subscribers|email:rfc,dns',
@@ -56,7 +55,10 @@ class SubscriberController extends Controller
         if ($validator->fails()) {
             return response()->json(["errors" => $validator->errors(), "status" => 400], 400);
         } else {
+            $name = mb_strtolower($request->name);
+            $name = ucwords($name);
             $uniqid = $this->generateIdUnique();
+            $request->merge(['name' => $name]);
             $request->request->add(['uniqueid' => $uniqid]);
             $subscriber = Subscriber::create($request->all());
             $subscriber->status = 200;
