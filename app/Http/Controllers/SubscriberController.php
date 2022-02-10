@@ -57,9 +57,11 @@ class SubscriberController extends Controller
         if ($validator->fails()) {
             return response()->json(["errors" => $validator->errors(), "status" => 400], 400);
         } else {
+            $email = mb_strtolower($request->email);
             $name = mb_strtolower($request->name);
             $name = ucwords($name);
             $uniqid = $this->generateIdUnique();
+            $request->merge(['email' => $email]);
             $request->merge(['name' => $name]);
             $request->request->add(['uniqueid' => $uniqid]);
             $subscriber = Subscriber::create($request->all());
