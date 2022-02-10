@@ -38,17 +38,22 @@ class SubscriberController extends Controller
     {
         $rules = array(
             'name' => 'required|regex:/^[\pL\pM\p{Zs}.-]+$/u',
-            'email' => 'required|unique:subscribers|email:rfc,dns',
+            'email' => ['required', 'unique:subscribers', 'email:rfc,dns', function ($attributte, $value, $fail) {
+                $chunkmail = explode("@", $value);
+                if (strpos($chunkmail[1], "test")) {
+                    $fail("Correo electrónico invalido");
+                }
+            }],
             'notice_of_privacy' => 'required|integer|min:1|max:1'
         );
         $messages = array(
-            'name.regex'=>'El formato del nombre es incorrecto.',
+            'name.regex' => 'El formato del nombre es incorrecto.',
             'name.required' => 'Por favor ingresa un nombre',
             'email.required' => 'Por favor ingresa un correo electrónico.',
             'notice_of_privacy.required' => 'Se debe aceptar el Aviso de Privacidad.',
             'email.unique' => 'Lo sentimos este correo electrónico ya fue registrado.',
             'email.email' => 'Formato de correo electrónico incorrecto.',
-            'email.rfc'=>'Formato de correo electrónico incorrecto.',
+            'email.rfc' => 'Formato de correo electrónico incorrecto.',
             'notice_of_privacy.min' => 'Se debe aceptar el Aviso de Privacidad.',
             'notice_of_privacy.max' => 'Se debe aceptar el Aviso de Privacidad.',
         );
