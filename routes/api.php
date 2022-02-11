@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
 Route::group(["middleware" => "apikey.validate"], function () {
-    Route::resource('suscriber', "SubscriberController");
+    Route::post('suscriber', "SubscriberController@store");
+    // Route::resource('suscriber', SubscriberController::class);
 });
